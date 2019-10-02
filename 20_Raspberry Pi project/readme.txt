@@ -27,9 +27,7 @@ Die Installation der RoboPiCam besteht aus:
             Statt "sudo apt-get update" Befehle: "sudo apt update" und "sudo apt full-upgrade" ausführen
    Siehe: g.co/coral  und den "Get started guide":
    https://coral.withgoogle.com/docs/accelerator/get-started/
-   Auf die Frage: Would you like to enable the maximum operating frequency? Y/N
-   am besten mit "N" antworten, da die normale Geschwindigkeit für diese Anwendung 
-   ausreicht.
+   Es reicht aus, die Edge TPU mit "default operating frequency" zu installieren.
    
 5) Zusätzlichen Bluetooth-Manager installieren:
       - Bluetooth Manager installieren
@@ -136,8 +134,7 @@ Installation steps:
      instead of  "sudo apt-get update" execute: "sudo apt update" und "sudo apt full-upgrade"
    See: g.co/coral  and the Get started guide:
    https://coral.withgoogle.com/docs/accelerator/get-started/
-   Answer to the question: Would you like to enable the maximum operating frequency? Y/N
-   with "N". The normal operating frequency is enough for this application
+   It is sufficient to install the Edge TPU with default operating frequency.
 
 5) Install additional Bluetooth-Manager:
     - Install Bluetooth-Manager with:
