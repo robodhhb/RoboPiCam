@@ -1,6 +1,6 @@
 Installation der RoboPiCam Applikation (see English Version below)
 ===================================================================
-Voraussetzung: Raspberry Pi 2/3 Model B/B+ mit 
+Voraussetzung: Raspberry Pi 2/3 Model B/B+ und 4 mit 
   - Raspbian Stretch und Python 3.5.3 oder
   - Raspbian Buster  und Python 3.7.3
   - Raspberry Pi Camera V2
@@ -23,10 +23,12 @@ Die Installation der RoboPiCam besteht aus:
 
 4) Installation der Edge TPU:
    Achtung: Erst SW installieren, dann Edge TPU über USB anschließen!
-   Achtung: Raspbian Buster user: Bitte auf Hinweise zu Python 3.7 achten.
-            Statt "sudo apt-get update" Befehle: "sudo apt update" und "sudo apt full-upgrade" ausführen
-   Siehe: g.co/coral  und den "Get started guide":
+   Siehe den Get Started Giude:
    https://coral.withgoogle.com/docs/accelerator/get-started/
+   Minimale Installation:
+        1) Install Edge TPU Runtime
+        2) Install Edge TPU Pyton API unter:
+           https://coral.withgoogle.com/docs/edgetpu/api-intro/
    Es reicht aus, die Edge TPU mit "default operating frequency" zu installieren.
    
 5) Zusätzlichen Bluetooth-Manager installieren:
@@ -107,7 +109,7 @@ b) Meldung nach dem Laden des Modells:
 ========================English Version====================================
 Installation of the application "RoboPiCam"
 --------------------------------------------
-Prerequisite: Raspberry Pi 2/3 Model B/B+ with:
+Prerequisite: Raspberry Pi 2/3 Model B/B+ and 4 with:
    - Raspbian Stretch and Python 3.5.3 or
    - Raspbian Buster and Python 3.7.3
    - Raspberry Pi Camera V2
@@ -130,10 +132,12 @@ Installation steps:
 
 4) Installation of the Edge TPU:
    Caution: First install the software then connect Edge TPU to the USB-Port!
-   Caution: Raspbian Buster user: See hint for Python 3.7 in  "Get started guide" and
-     instead of  "sudo apt-get update" execute: "sudo apt update" und "sudo apt full-upgrade"
-   See: g.co/coral  and the Get started guide:
+   See: Get started guide:
    https://coral.withgoogle.com/docs/accelerator/get-started/
+   Minimal installation:
+        1) Install Edge TPU Runtime
+        2) Install Edge TPU Pyton API on:
+           https://coral.withgoogle.com/docs/edgetpu/api-intro/
    It is sufficient to install the Edge TPU with default operating frequency.
 
 5) Install additional Bluetooth-Manager:
