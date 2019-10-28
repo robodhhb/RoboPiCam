@@ -7,7 +7,7 @@
 #
 # File: roboPiCamContr.py
 # Author: Detlef Heinze 
-# Version: 1.2    Date: 27.07.2019       
+# Version: 1.3    Date: 28.10.2019       
 ###########################################################
 from picamera import PiCamera
 from time import sleep
@@ -109,7 +109,7 @@ class RoboPiCamContr(object):
         flatArray= picData.flatten() #3D to 1D conversion
         print('Input array size: ', flatArray.shape)
         #Call the TPU to detect objects on the image with a neural network
-        result = self.engine.DetectWithInputTensor(flatArray,
+        result = self.engine.detect_with_input_tensor(flatArray,
                                                    threshold=self.minObjectScore,
                                                    top_k=10)
         return result
