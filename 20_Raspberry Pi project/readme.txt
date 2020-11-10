@@ -1,8 +1,7 @@
 Installation der RoboPiCam Applikation (see English Version below)
 ===================================================================
-Voraussetzung: Raspberry Pi 2/3 Model B/B+ und 4 mit 
-  - Raspbian Stretch und Python 3.5.3 oder
-  - Raspbian Buster  und Python 3.7.3
+Voraussetzung: Raspberry Pi 3 Model B+ und 4 mit 
+  - Raspbian/ Pi OS Buster  und Python 3.7.3
   - Raspberry Pi Camera V2
   - Coral USB Accelerator (Edge TPU)
   - Lego Mindstorms EV3
@@ -25,10 +24,11 @@ Die Installation der RoboPiCam besteht aus:
    Achtung: Erst SW installieren, dann Edge TPU über USB anschließen!
    Siehe den Get Started Giude:
    https://coral.withgoogle.com/docs/accelerator/get-started/
-   Minimale Installation:
+   Installation:
         1) Install Edge TPU Runtime
-        2) Install Edge TPU Python API unter:
-           https://coral.withgoogle.com/docs/edgetpu/api-intro/
+        2) Install TensorFlow Lite API
+        3) Install PyCoral API
+           https://coral.ai/docs/edgetpu/tflite-python/#run-an-inference-with-the-pycoral-api
    Es reicht aus, die Edge TPU mit "default operating frequency" zu installieren.
    
 5) Zusätzlichen Bluetooth-Manager installieren:
@@ -109,9 +109,8 @@ b) Meldung nach dem Laden des Modells:
 ========================English Version====================================
 Installation of the application "RoboPiCam"
 --------------------------------------------
-Prerequisite: Raspberry Pi 2/3 Model B/B+ and 4 with:
-   - Raspbian Stretch and Python 3.5.3 or
-   - Raspbian Buster and Python 3.7.3
+Prerequisite: Raspberry Pi3 M odel B+ and 4 with:
+   - Raspbian/Pi OS Buster and Python 3.7.3
    - Raspberry Pi Camera V2
    - Coral USB Accelerator (Edge TPU)
    - Lego Mindstorms EV3
@@ -134,10 +133,11 @@ Installation steps:
    Caution: First install the software then connect Edge TPU to the USB-Port!
    See: Get started guide:
    https://coral.withgoogle.com/docs/accelerator/get-started/
-   Minimal installation:
+   Installation:
         1) Install Edge TPU Runtime
-        2) Install Edge TPU Python API on:
-           https://coral.withgoogle.com/docs/edgetpu/api-intro/
+        2) Install TensorFlow Lite API
+        3) Install PyCoral API
+           https://coral.ai/docs/edgetpu/tflite-python/#run-an-inference-with-the-pycoral-api
    It is sufficient to install the Edge TPU with default operating frequency.
 
 5) Install additional Bluetooth-Manager:

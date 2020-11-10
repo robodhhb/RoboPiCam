@@ -3,15 +3,19 @@
 # Class RoboPiCamContr
 # This class realizes the application control code for
 # the pi using a camera and an Edge TPU for inferencing.
+# The EdgeTPU is accessed via the PyCoral-API.
 # Also a EV3 robot is connected and commanded via bluetooth
 #
 # File: roboPiCamContr.py
 # Author: Detlef Heinze 
-# Version: 1.3    Date: 28.10.2019       
+# Version: 1.5    Date: 10.11.2020       
 ###########################################################
 from picamera import PiCamera
 from time import sleep
-from edgetpu.detection.engine import DetectionEngine
+from pycoral.utils import edgetpu
+from pycoral.utils import dataset
+from pycoral.adapters import common
+from pycoral.adapters import detect
 import numpy as np
 #Telecommand and telemetry communication
 import TMTCpi2EV3 as tmtcCom
@@ -34,10 +38,14 @@ class RoboPiCamContr(object):
         self.appDuration= appDuration #seconds to run
         self.minObjectScore= minObjectScore
         
-        modelFile= 'mobilenet_ssd_v2_coco_quant_postprocess_edgetpu.tflite'
+        modelFile= 'ssd_mobilenet_v2_coco_quant_postprocess_edgetpu.tflite'
         objectLabelsFile= 'coco_labels.txt'
         print("Reading Model: ", modelFile)
-        self.engine= DetectionEngine(modelFile)
+        
+        # Initialize the TF interpreter
+        self.interpreter = edgetpu.make_interpreter(modelFile)
+        self.interpreter.allocate_tensors()
+        
         print("Reading object labels: ", objectLabelsFile)
         self.labels= self.readLabelFile(objectLabelsFile)
         print("Minimal object score: ", self.minObjectScore)
@@ -106,12 +114,10 @@ class RoboPiCamContr(object):
     def predict(self, picData):
         print("\nPredicting image on TPU")
         print('Shape of data: ', picData.shape)
-        flatArray= picData.flatten() #3D to 1D conversion
-        print('Input array size: ', flatArray.shape)
         #Call the TPU to detect objects on the image with a neural network
-        result = self.engine.detect_with_input_tensor(flatArray,
-                                                   threshold=self.minObjectScore,
-                                                   top_k=10)
+        common.set_input(self.interpreter, picData)
+        self.interpreter.invoke()
+        result=  detect.get_objects(self.interpreter, self.minObjectScore)
         return result
     
     #Step 14: Analyse the result of inferencing on the TPU.
@@ -123,14 +129,14 @@ class RoboPiCamContr(object):
         lbl= ''
         if predResult:
             for obj in predResult:
-                if obj.label_id in objectIdsOfInterest:
+                if obj.id in objectIdsOfInterest:
                     if self.labels:
-                        lbl= self.labels[obj.label_id]
-                        print(lbl, obj.label_id)
+                        lbl= self.labels[obj.id]
+                        print(lbl, obj.id)
                     print ('score = ', obj.score)
-                    box = obj.bounding_box.flatten()
-                    box *= self.cameraResolution[1]  #scale up to resolution
-                    print ('box = ', box.tolist())
+                    box= (obj.bbox.xmin, obj.bbox.ymax,
+                          obj.bbox.xmax, obj.bbox.ymin)
+                    print ('box = ', box)
                     detectedObjList.append( (lbl, box) )
         if len(detectedObjList) == 0:
             print ('No object detected!')
