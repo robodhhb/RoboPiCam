@@ -109,7 +109,7 @@ b) Meldung nach dem Laden des Modells:
 ========================English Version====================================
 Installation of the application "RoboPiCam"
 --------------------------------------------
-Prerequisite: Raspberry Pi3 M odel B+ and 4 with:
+Prerequisite: Raspberry Pi 3 Model B+ and 4 with:
    - Raspbian/Pi OS Buster and Python 3.7.3
    - Raspberry Pi Camera V2
    - Coral USB Accelerator (Edge TPU)
